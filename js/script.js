@@ -5,9 +5,6 @@
 // begins with a vowel you just add "yay" to the end. For example, pig becomes
 // igpay, banana becomes ananabay, and aadvark becomes aadvarkway.
 $(document).ready(function() {
-//-----------------------Global variables-----------------------------
-  var selected = 'engToPigLatin';
-  var output = '';
 //-----------------------Basic Functions-------------------------------  
   
   //Capitalizes the first letter
@@ -32,21 +29,7 @@ $(document).ready(function() {
     }
   }
   
-//------------------------Select language----------------------------
-  
-  //Select English-to-pigLatin translation
-  $('#engToPigLatin').click(function(){
-    selected = 'engToPigLatin';
-    console.log(selected);
-  });
-  
-  //Select pigLatin-to-English translation
-  $('#pigLatinToEng').click(function(){
-    selected = 'pigLatinToEng';
-    console.log(selected);
-  });
-  
-//---------------------Pig Latinizer Engine---------------------------
+//---------------------Eng-to-Pig Latin Engine------------------------
   
   // Appends "yay" to the end of the word and returns the word.
   function appendYayToWord(word) {
@@ -67,21 +50,22 @@ $(document).ready(function() {
       return convertWordWithConsonant(word);
     }
   }
-
+  
+  function sentenceToPigLatin(sentence) {
+    var array = sentence.split(' ');
+    for(var i = 0; i < array.length; i = i + 1) {
+      var translation = engToPigLatin(array[i]);
+      if (i === 0) {
+        translation = capitalizeFirstLetter(translation);
+      }
+      $('#output').append(translation + ' ');
+    }
+  }
+  
 //----------------------------Translator------------------------------
   
   $('#translate').click(function() {
     var input = $('#input').val().toLocaleLowerCase();
-    //English to Pig Latin
-    if (selected === 'engToPigLatin') {
-      output = engToPigLatin(input);
-    }
-    //Pig Latin to English 
-    else if (selected === 'pigLatinToEng') {
-      
-    }
-    // Capitalize first letter
-    output = capitalizeFirstLetter(output);
-    $('#output').html(output);
+    sentenceToPigLatin(input);
   });
 });
