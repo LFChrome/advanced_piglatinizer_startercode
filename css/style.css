@@ -15,5 +15,9 @@
     margin-right: 30px;
 }
 
-
+body {
+    font-family: 'Press Start 2P';
+    color: lime;
+    background-color: black;
+}
 

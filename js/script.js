@@ -65,6 +65,7 @@ $(document).ready(function() {
 //----------------------------Translator------------------------------
   
   $('#translate').click(function() {
+    $('#output').html('');
     var input = $('#input').val().toLocaleLowerCase();
     sentenceToPigLatin(input);
   });
